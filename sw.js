@@ -4,11 +4,11 @@ const CACHE_NAME = "arthur-morgan-site-v1";
 // Files to cache
 const urlsToCache = [
   "/",
-  "/code.html",
-  "/style/style.css",
-  "/images/arthur-morgan-rdr2-closeup.avif",
-  "/images/images.jpeg",
-  "/images/resize.webp"
+  "./code.html",
+  "./style/style.css",
+  "./images/arthur-morgan-rdr2-closeup.avif",
+  "./images/images.jpeg",
+  "./images/resize.webp"
 ];
 
 // Install Service Worker
