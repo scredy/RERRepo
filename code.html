@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arthur Morgan — Legendary Outlaw</title>
+  <meta name="description" content="A clean, responsive one-page static website celebrating Arthur Morgan — the complex, stoic protagonist of Red Dead Redemption 2." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f14; --surface:#111823; --muted:#1a2330; --text:#e7edf5; --sub:#9fb3c8; --brand:#ffc857; --brand-2:#ff8c42; --accent:#4cc9f0;
+      --ring: rgba(255,200,87,0.5);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Outfit",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;scroll-behavior:smooth}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1100px, 92vw);margin-inline:auto}
+    .btn{display:inline-flex;gap:.6rem;align-items:center;padding:.9rem 1.1rem;border-radius:1rem;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#121212;font-weight:700;border:none;box-shadow:0 10px 24px rgba(255,140,66,.2);transition:transform .15s ease,box-shadow .15s ease}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(255,140,66,.28)}
+    .btn.secondary{background:#1f2a38;color:var(--text);border:1px solid #2b3b52;box-shadow:none}
+    .btn.secondary:hover{background:#243244}
+    nav{position:sticky;top:0;z-index:50;background:rgba(11,15,20,.65);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+    nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
+    nav .brand{display:flex;gap:.7rem;align-items:center;font-weight:800;letter-spacing:.5px}
+    .badge{font-size:.8rem;padding:.18rem .5rem;border:1px solid #2b3b52;border-radius:.6rem;color:var(--sub)}
+    .nav-links{display:flex;gap:1rem;align-items:center}
+    .nav-links a{padding:.6rem .8rem;border-radius:.7rem;color:var(--sub)}
+    .nav-links a:hover{color:var(--text);background:#121a25}
+
+    header.hero{position:relative;overflow:hidden}
+    header .grid{display:grid;gap:2rem;grid-template-columns:1.1fr .9fr;align-items:center;padding:clamp(2rem, 6vw, 5rem) 0}
+    header h1{font-size:clamp(2.2rem, 4.8vw, 4rem);line-height:1.05;margin:0 0 1rem;font-weight:800}
+    header p{color:var(--sub);font-size:clamp(1rem, 1.6vw, 1.15rem)}
+    .hero-card{background:linear-gradient(180deg,#131c28,#0d131c 60%);border:1px solid #1c2838;border-radius:1.4rem;overflow:hidden;box-shadow:0 30px 60px rgba(5,10,20,.4)}
+    .hero-card .cap{padding:1rem 1.2rem;border-top:1px solid #1f2c3f;color:var(--sub);display:flex;justify-content:space-between;align-items:center}
+    .pill{font-size:.9rem;background:#101822;border:1px solid #243247;color:#9db0c5;padding:.35rem .7rem;border-radius:2rem}
+
+    section{padding:clamp(2rem,6vw,4rem) 0;border-top:1px solid rgba(255,255,255,.06)}
+    .section-title{font-size:1.6rem;margin:0 0 1.2rem}
+    .lead{color:var(--sub);line-height:1.7}
+
+    .facts{display:grid;gap:1rem;grid-template-columns:repeat(4,1fr)}
+    .card{background:linear-gradient(180deg,#0f1722,#0c131c);border:1px solid #1b2738;border-radius:1.2rem;padding:1.1rem}
+    .card h3{margin:.2rem 0 .4rem;font-size:1rem;color:#dce7f3}
+    .card p{margin:0;color:var(--sub);font-size:.95rem}
+
+    .two-col{display:grid;gap:1.5rem;grid-template-columns:1fr 1fr;align-items:start}
+    .quote{font-size:1.1rem;line-height:1.7;border-left:4px solid var(--brand);padding-left:1rem;color:#eaeff6}
+
+    .timeline{position:relative;padding-left:1.2rem}
+    .timeline::before{content:"";position:absolute;left:.3rem;top:0;bottom:0;width:2px;background:#233246}
+    .event{margin-bottom:1rem;padding-left:1rem}
+    .dot{width:.75rem;height:.75rem;border-radius:50%;background:var(--accent);display:inline-block;margin-right:.5rem;box-shadow:0 0 0 6px rgba(76,201,240,.12)}
+    details{background:#0f1722;border:1px solid #1b2738;border-radius:.9rem;padding:.8rem 1rem}
+    summary{cursor:pointer;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    summary:focus{outline:2px solid var(--ring);border-radius:.4rem}
+
+    .gallery{display:grid;gap:1rem;grid-template-columns:repeat(3,1fr)}
+    .gallery figure{margin:0;overflow:hidden;border-radius:1rem;border:1px solid #1c2838}
+    .gallery img{aspect-ratio:16/10;object-fit:cover;filter:saturate(.9);transition:transform .3s ease}
+    .gallery img:hover{transform:scale(1.04)}
+    .figcap{padding:.6rem .8rem;font-size:.9rem;color:var(--sub)}
+
+    .grid-3{display:grid;gap:1rem;grid-template-columns:repeat(3,1fr)}
+    .list-clean{margin:0;padding-left:1.1rem}
+    .list-clean li{margin:.4rem 0;color:#cbd8e6}
+
+    footer{padding:2.5rem 0;color:#a7bbd2}
+    .footer-wrap{display:flex;gap:1rem;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06);padding-top:1.2rem}
+
+    .top-shadow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(60rem 60rem at 10% -10%, rgba(76,201,240,.16), transparent 30%),radial-gradient(50rem 50rem at 110% 20%, rgba(255,200,87,.12), transparent 35%)}
+
+    /* Responsive */
+    @media (max-width: 960px){
+      header .grid{grid-template-columns:1fr}
+      .facts{grid-template-columns:repeat(2,1fr)}
+      .two-col{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .grid-3{grid-template-columns:1fr}
+    }
+    @media (max-width: 520px){
+      .facts{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container wrap">
+      <div class="brand">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true" role="img"><path d="M12 2l2.39 4.84 5.34.78-3.86 3.76.91 5.32L12 14.9 6.22 16.7l.91-5.32L3.27 7.62l5.34-.78L12 2z" stroke="currentColor" stroke-width="1.2"/></svg>
+        Arthur Morgan
+        <span class="badge">Fan Site</span>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#traits">Traits</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="top-shadow" aria-hidden="true"></div>
+    <div class="container grid">
+      <div>
+        <h1>Arthur Morgan<br><span style="color:var(--brand)">Legendary Outlaw. Reluctant Hero.</span></h1>
+        <p>Stoic, skillful, and fiercely loyal, Arthur Morgan is the complex heart of <em>Red Dead Redemption&nbsp;2</em>. This one-page site collects his backstory, defining choices, and the themes that make his arc unforgettable.</p>
+        <div style="display:flex;gap:.8rem;margin-top:1.2rem">
+          <a class="btn" href="#about">Learn More</a>
+          <a class="btn secondary" href="#gallery">Jump to Gallery</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1613482283499-4afcd8f3a1c1?q=80&w=1920&auto=format&fit=crop" alt="Moody western landscape reminiscent of Arthur Morgan's world"/>
+        <div class="cap">
+          <span class="pill">Van der Linde Gang</span>
+          <span class="pill">1899 • The West</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about" aria-labelledby="about-title">
+      <h2 class="section-title" id="about-title">Who is Arthur Morgan?</h2>
+      <p class="lead">Arthur Morgan is the playable protagonist of <em>Red Dead Redemption&nbsp;2</em> — a veteran outlaw of the Van der Linde gang known for his dry wit, unwavering loyalty, and evolving moral compass. Over the course of the story, Arthur confronts loyalty, loss, and redemption while the age of outlaws fades around him.</p>
+      <div class="two-col" style="margin-top:1rem">
+        <div>
+          <div class="card">
+            <h3>Role</h3>
+            <p>Senior member & enforcer for the Van der Linde gang; mentor to younger outlaws, scout, and survivalist.</p>
+          </div>
+          <div class="card" style="margin-top:.8rem">
+            <h3>Skills</h3>
+            <p>Exceptional marksmanship, tracking, hunting, horse riding, and a surprising knack for sketching in his journal.</p>
+          </div>
+        </div>
+        <div>
+          <p class="quote">“We can’t fight nature, we can’t fight change, we can’t fight gravity. We can only fight ourselves.” — Arthur Morgan</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="traits" aria-labelledby="traits-title">
+      <h2 class="section-title" id="traits-title">Why fans love him</h2>
+      <div class="facts">
+        <div class="card"><h3>Morally Complex</h3><p>Capable of brutality, yet deeply introspective and protective of the vulnerable.</p></div>
+        <div class="card"><h3>Loyal, not Blind</h3><p>His commitment to Dutch is tested as ideals clash with reality.</p></div>
+        <div class="card"><h3>Arc of Redemption</h3><p>Player choices shape his honor, but his late‑game clarity defines his legacy.</p></div>
+        <div class="card"><h3>Human Moments</h3><p>From sketching wildlife to helping strangers, he’s more than a gun.</p></div>
+      </div>
+    </section>
+
+    <section id="timeline" aria-labelledby="timeline-title">
+      <h2 class="section-title" id="timeline-title">Key Moments (Spoiler‑light)</h2>
+      <div class="timeline" role="list">
+        <article class="event" role="listitem">
+          <span class="dot" aria-hidden="true"></span>
+          <details>
+            <summary><strong>Early life with Dutch</strong> — taken in young, becomes a trusted protégé</summary>
+            <p>Arthur grows under Dutch’s philosophy of “freedom” and family, learning to survive by wit and gun.</p>
+          </details>
+        </article>
+        <article class="event" role="listitem">
+          <span class="dot" aria-hidden="true"></span>
+          <details>
+            <summary><strong>Heist setbacks</strong> — the gang’s stability begins to crack</summary>
+            <p>Botched jobs and pressure from lawmen force hard choices that test loyalties.</p>
+          </details>
+        </article>
+        <article class="event" role="listitem">
+          <span class="dot" aria-hidden="true"></span>
+          <details>
+            <summary><strong>A turning point</strong> — reflection, consequence, and resolve</summary>
+            <p>Arthur reassesses who he wants to be, and who he must protect, in a changing world.</p>
+          </details>
+        </article>
+      </div>
+      <p class="lead" style="margin-top:1rem">Open each moment for a short, spoiler‑light description. You can expand this section with your favorite chapters or choices.</p>
+    </section>
+
+    <section id="gallery" aria-labelledby="gallery-title">
+      <h2 class="section-title" id="gallery-title">Gallery</h2>
+      <p class="lead">Drop in your favorite screenshots or fan‑safe promotional stills. Replace the image URLs with your own; captions are optional.</p>
+      <div class="gallery" aria-live="polite">
+        <figure>
+          <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?q=80&w=1920&auto=format&fit=crop" alt="Close-up of a rugged leather hat and revolver holster on a wooden table"/>
+          <figcaption class="figcap">Quiet moments on the trail.</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1603400522310-86619e33da6f?q=80&w=1920&auto=format&fit=crop" alt="Foggy pines at dawn with a rider silhouette"/>
+          <figcaption class="figcap">Dawn rides.</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1920&auto=format&fit=crop" alt="Weathered journal pages with sketches and notes"/>
+          <figcaption class="figcap">Sketches & stories.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="trivia" aria-labelledby="trivia-title">
+      <h2 class="section-title" id="trivia-title">Trivia & Notes</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Honor System</h3>
+          <ul class="list-clean">
+            <li>Your actions shape NPC interactions and certain endings.</li>
+            <li>High honor unlocks unique dialogue and scenes.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Journal</h3>
+          <ul class="list-clean">
+            <li>Arthur documents wildlife, people, and events in his own hand.</li>
+            <li>It reflects his evolving worldview.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Playstyle Tips</h3>
+          <ul class="list-clean">
+            <li>Keep your horse bonded for better handling.</li>
+            <li>Eat, rest, and dress for the weather—survival matters.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" aria-labelledby="faq-title">
+      <h2 class="section-title" id="faq-title">FAQ</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>Is this spoiler‑free?</h3>
+          <p>Mostly. The timeline is intentionally light on detail so new players can browse safely.</p>
+        </div>
+        <div class="card">
+          <h3>Can I use these assets?</h3>
+          <p>Images here are placeholders from Unsplash. Replace them with your own screenshots or images you have rights to use.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <p>© <span id="year"></span> Arthur Morgan Fan Site • Built with vanilla HTML/CSS</p>
+      <a class="btn secondary" href="#top" aria-label="Back to top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // Set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Accessibly toggle details: ensure only one open at a time (optional UX)
+    const details = document.querySelectorAll('#timeline details');
+    details.forEach(d => d.addEventListener('toggle', () => {
+      if(d.open){
+        details.forEach(o => { if(o !== d) o.removeAttribute('open'); });
+      }
+    }));
+  </script>
+</body>
+</html>
